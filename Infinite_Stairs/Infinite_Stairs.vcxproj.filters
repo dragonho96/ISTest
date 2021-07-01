@@ -268,7 +268,9 @@
       <UniqueIdentifier>{87bd564e-7972-4794-88b0-137eeb3f3c99}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\99.Manager\07.SceneMgr">
+
       <UniqueIdentifier>{9a050696-c029-405e-aa13-4e05d8bbcfdf}</UniqueIdentifier>
+
     </Filter>
   </ItemGroup>
   <ItemGroup>

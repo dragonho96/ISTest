@@ -23,7 +23,7 @@ int CCounter::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
-	//¿Ã¶ó°£ °è´Ü ¼öÇÏ°í ÄÚÀÎ ¼ö °¡Á®¿À´Â ÇÔ¼ö ÇÊ¿ä.
+	//ì˜¬ë¼ê°„ ê³„ë‹¨ ìˆ˜í•˜ê³  ì½”ì¸ ìˆ˜ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜ í•„ìš”.
 	Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -37,9 +37,12 @@ void CCounter::Render(HDC _DC)
 	if (!lstrcmp(m_pFrameKey, L"StairCnt"))
 	{
 		//int stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
-	/*	while (stair_cnt > 0) {
 
-		}*/
+		//while (stair_cnt > 0) {
+
+		//}
+
+
 	}
 }
 

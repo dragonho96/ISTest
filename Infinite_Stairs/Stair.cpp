@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Stair.h"
 #include "ScrollMgr.h"
+#include "BmpMgr.h"
 
 CStair::CStair()
 {
@@ -42,7 +43,15 @@ void CStair::Render(HDC _DC)
 	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	Rectangle(_DC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Stair");
+
+	GdiTransparentBlt(_DC
+		, m_tRect.left, m_tRect.top
+		, STAIR_CX, STAIR_CY
+		, hMemDC
+		, 0, 0
+		, STAIR_CX, STAIR_CY
+		, RGB(0, 255, 0));
 }
 
 void CStair::Release()

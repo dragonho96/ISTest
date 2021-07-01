@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
 #include "Scene.h"
+
 #include "MyMenu.h"
+
 #include "Stage.h"
 CSceneMgr* CSceneMgr::m_Instance = nullptr;
 CSceneMgr::CSceneMgr()
