@@ -6,6 +6,9 @@
 #include "Gauge.h"
 #include "Counter.h"
 #include "BmpMgr.h"
+#include "BackgroundMgr.h"
+#include "ScrollMgr.h"
+
 CStage::CStage()
 {
 }
@@ -32,12 +35,14 @@ void CStage::Initialize()
 
 
 	CStairMgr::Get_Instance()->Initialize();
+	CBackgroundMgr::Get_Instance()->Initialize();
+	CScrollMgr::Get_Instance()->Set_ScrollX(-(STAIR_INITPOS_X - (WINCX / 2)));
 }
 
 void CStage::Update()
 {
 	CObjMgr::Get_Instance()->Update();
-
+	CBackgroundMgr::Get_Instance()->Update();
 }
 
 void CStage::Late_Update()

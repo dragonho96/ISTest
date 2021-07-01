@@ -15,6 +15,9 @@ public:
 	void Add_Stair();
 
 public:
+	CObj* Get_Stair(int _iIdx) { return m_dequeStair[_iIdx]; }
+
+public:
 	static CStairMgr* Get_Instance()
 	{
 		if (!m_pInstance)
