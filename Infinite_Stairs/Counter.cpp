@@ -36,10 +36,10 @@ void CCounter::Render(HDC _DC)
 {
 	if (!lstrcmp(m_pFrameKey, L"StairCnt"))
 	{
-		int stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
-		while (stair_cnt > 0) {
+		//int stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
+	/*	while (stair_cnt > 0) {
 
-		}
+		}*/
 	}
 }
 

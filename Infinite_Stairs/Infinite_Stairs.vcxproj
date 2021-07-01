@@ -170,6 +170,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Stair.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Stair.cpp" />
