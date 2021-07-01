@@ -18,6 +18,7 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
+
 	CObj* pObj = new CPlayer;
 	pObj->Initialize();
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::PLAYER);

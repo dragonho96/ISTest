@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Coin.h"
 #include "BmpMgr.h"
+#include "ScrollMgr.h"
 
 CCoin::CCoin()
 {
@@ -45,12 +46,14 @@ void CCoin::Late_Update()
 
 void CCoin::Render(HDC _DC)
 {
+	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 	//Ellipse(_DC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Coin");
 
 	GdiTransparentBlt(_DC
-		, m_tRect.left, m_tRect.top
+		, m_tRect.left + iScrollX, m_tRect.top + iScrollY
 		, COIN_CX, COIN_CY
 		, hMemDC
 		, COIN_CX * m_tFrame.iStartX, 0
