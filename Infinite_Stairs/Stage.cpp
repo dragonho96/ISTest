@@ -17,7 +17,7 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
-	CStairMgr::Get_Instance()->Initialize();
+	//CStairMgr::Get_Instance()->Initialize();
 	CObj* pObj = new CPlayer;
 	pObj->Initialize();
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::PLAYER);

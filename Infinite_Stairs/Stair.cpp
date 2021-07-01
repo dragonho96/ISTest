@@ -46,7 +46,7 @@ void CStair::Render(HDC _DC)
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Stair");
 
 	GdiTransparentBlt(_DC
-		, m_tRect.left, m_tRect.top
+		, m_tRect.left + iScrollX, m_tRect.top + iScrollY
 		, STAIR_CX, STAIR_CY
 		, hMemDC
 		, 0, 0
