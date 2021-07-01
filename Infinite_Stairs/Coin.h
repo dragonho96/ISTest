@@ -16,6 +16,8 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render(HDC _DC) override;
 	virtual void Release() override;
+
+	void Update_Frame();
 };
 
 #endif // !__COIN_H__

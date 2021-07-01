@@ -21,6 +21,11 @@ CCoin::~CCoin()
 void CCoin::Initialize()
 {
 	Update_Rect();
+	m_tFrame.iStartX = 0;
+	m_tFrame.iEndX = 5;
+	m_tFrame.iStateY = 0;
+	m_tFrame.dwDelayTime = 80.f;
+	m_tFrame.dwTime = GetTickCount();
 }
 
 int CCoin::Update()
@@ -45,4 +50,16 @@ void CCoin::Render(HDC _DC)
 
 void CCoin::Release()
 {
+}
+
+void CCoin::Update_Frame()
+{
+	if (m_tFrame.dwDelayTime + m_tFrame.dwTime < GetTickCount())
+	{
+		++m_tFrame.iStartX;
+		m_tFrame.dwTime = GetTickCount();
+
+		if (m_tFrame.iStartX >= m_tFrame.iEndX)
+			m_tFrame.iStartX = 0;
+	}
 }
