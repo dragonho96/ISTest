@@ -12,8 +12,8 @@
 
 #define STAIR_CX 82
 #define STAIR_CY 45
-#define COIN_CX 15
-#define COIN_CY 15
+#define COIN_CX 48
+#define COIN_CY 48
 
 #define STAIR_INITPOS_X 200
 #define STAIR_INITPOS_Y 600

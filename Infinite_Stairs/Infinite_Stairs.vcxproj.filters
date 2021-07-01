@@ -71,6 +71,9 @@
     <ClCompile Include="MyBitmap.cpp">
       <Filter>소스 파일\03.MyBitmap</Filter>
     </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>소스 파일\99.Manager\07.SceneMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -173,6 +176,9 @@
     <ClInclude Include="MyBitmap.h">
       <Filter>소스 파일\03.MyBitmap</Filter>
     </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>소스 파일\99.Manager\07.SceneMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Infinite_Stairs.ico">
@@ -260,6 +266,9 @@
     </Filter>
     <Filter Include="소스 파일\03.MyBitmap">
       <UniqueIdentifier>{87bd564e-7972-4794-88b0-137eeb3f3c99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Manager\07.SceneMgr">
+      <UniqueIdentifier>{7fe94b27-36f3-4e35-bc26-a67cc447e1a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

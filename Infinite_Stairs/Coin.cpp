@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Coin.h"
+#include "BmpMgr.h"
+
 CCoin::CCoin()
 {
 }
@@ -32,7 +34,7 @@ int CCoin::Update()
 		return OBJ_DEAD;
 
 
-
+	Update_Frame();
 
 	return OBJ_NOEVENT;
 }
@@ -43,7 +45,17 @@ void CCoin::Late_Update()
 
 void CCoin::Render(HDC _DC)
 {
-	Ellipse(_DC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	//Ellipse(_DC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	
+	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Coin");
+
+	GdiTransparentBlt(_DC
+		, m_tRect.left, m_tRect.top
+		, COIN_CX, COIN_CY
+		, hMemDC
+		, COIN_CX * m_tFrame.iStartX, 0
+		, COIN_CX, COIN_CY
+		, RGB(0, 255, 0));
 }
 
 void CCoin::Release()

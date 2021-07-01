@@ -79,7 +79,7 @@ void CStairMgr::Add_Stair()
 	iRand = rand() % 10;
 	if (iRand <= m_iCoinProbability)
 	{
-		CObj* pCoin = new CCoin(INFO(tInfo.fX, tInfo.fY - 30, COIN_CX, COIN_CY));
+		CObj* pCoin = new CCoin(INFO(tInfo.fX, tInfo.fY - (tInfo.iCY / 2 + COIN_CY / 2 + 5), COIN_CX, COIN_CY));
 		pCoin->Initialize();
 		CObjMgr::Get_Instance()->Add_Object(pCoin, OBJID::COIN);
 	}

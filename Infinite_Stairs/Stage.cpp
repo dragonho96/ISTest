@@ -24,6 +24,8 @@ void CStage::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CCounter>::Create(200, 300, 50, 50, L"StairNum"), OBJID::STAGEUI);
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CGauge>::Create(200, 220, 200, 50, L"Gauge"), OBJID::STAGEUI);
+	
+	CStairMgr::Get_Instance()->Initialize();
 }
 
 void CStage::Update()
