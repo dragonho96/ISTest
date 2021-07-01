@@ -7,7 +7,7 @@
 #include "BmpMgr.h"
 
 CPlayer::CPlayer()
-	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f), m_ePreState(END), m_eCurState(END), m_dwDeadTime(GetTickCount())
+	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f), m_ePreState(END), m_eCurState(END), m_dwDeadTime(GetTickCount()), m_bRightLeg(true)
 {
 }
 
@@ -77,23 +77,49 @@ void CPlayer::Render(HDC _DC)
 			, -m_tInfo.iCX, m_tInfo.iCY
 			, SRCCOPY);
 
-		GdiTransparentBlt(_DC
-			, m_tRect.left + iScrollX, m_tRect.top + iScrollY
-			, m_tInfo.iCX, m_tInfo.iCY
-			, hStretchDC
-			, 0, 0
-			, m_tInfo.iCX, m_tInfo.iCY
-			, RGB(0, 255, 0));
+		if (m_ePreState == WALK && !(m_tFrame.iStartX % 2))
+		{
+			GdiTransparentBlt(_DC
+				, m_tRect.left + iScrollX - STAIR_CX, m_tRect.top + iScrollY + STAIR_CY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, hStretchDC
+				, 0, 0
+				, m_tInfo.iCX, m_tInfo.iCY
+				, RGB(0, 255, 0));
+		}
+		else
+		{
+			GdiTransparentBlt(_DC
+				, m_tRect.left + iScrollX, m_tRect.top + iScrollY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, hStretchDC
+				, 0, 0
+				, m_tInfo.iCX, m_tInfo.iCY
+				, RGB(0, 255, 0));
+		}
 	}
 	else
 	{
-		GdiTransparentBlt(_DC
-			, m_tRect.left + iScrollX, m_tRect.top + iScrollY
-			, m_tInfo.iCX, m_tInfo.iCY
-			, hMemDC
-			, m_tFrame.iStartX * m_tInfo.iCX, m_tFrame.iStateY * m_tInfo.iCY
-			, m_tInfo.iCX, m_tInfo.iCY
-			, RGB(0, 255, 0));
+		if (m_ePreState == WALK && !(m_tFrame.iStartX % 2))
+		{
+			GdiTransparentBlt(_DC
+				, m_tRect.left + iScrollX + STAIR_CX, m_tRect.top + iScrollY + STAIR_CY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, hMemDC
+				, m_tFrame.iStartX * m_tInfo.iCX, m_tFrame.iStateY * m_tInfo.iCY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, RGB(0, 255, 0));
+		}
+		else
+		{
+			GdiTransparentBlt(_DC
+				, m_tRect.left + iScrollX, m_tRect.top + iScrollY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, hMemDC
+				, m_tFrame.iStartX * m_tInfo.iCX, m_tFrame.iStateY * m_tInfo.iCY
+				, m_tInfo.iCX, m_tInfo.iCY
+				, RGB(0, 255, 0));
+		}
 	}
 }
 
@@ -125,10 +151,10 @@ void CPlayer::Update_Frame()
 		if (m_ePreState == WALK)
 		{
 			if (m_tFrame.iStartX % 2)
-			
-
-			if (m_tFrame.iStartX % 2)
+			{
+				m_bRightLeg = !m_bRightLeg;
 				m_eCurState = IDLE;
+			}
 		}
 
 		if (m_tFrame.iStartX >= m_tFrame.iEndX)
@@ -204,10 +230,13 @@ void CPlayer::Check_State()
 			m_tFrame.dwTime = GetTickCount();
 			break;
 		case CPlayer::WALK:
-			m_tFrame.iStartX = 0;
+			if (m_bRightLeg)
+				m_tFrame.iStartX = 0;
+			else
+				m_tFrame.iStartX = 2;
 			m_tFrame.iEndX = 4;
 			m_tFrame.iStateY = WALK;
-			m_tFrame.dwDelayTime = 100;
+			m_tFrame.dwDelayTime = 1000;
 			m_tFrame.dwTime = GetTickCount();
 			break;
 		case CPlayer::DEAD:

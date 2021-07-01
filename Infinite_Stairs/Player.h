@@ -36,6 +36,7 @@ private:
 	STATE		m_eCurState;
 
 	bool		m_bStretch;
+	bool		m_bRightLeg;
 
 	int			m_iStairCnt;
 	float		m_fStairCX;
