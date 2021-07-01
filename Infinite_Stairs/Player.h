@@ -5,6 +5,8 @@
 #include "Obj.h"
 class CPlayer :	public CObj
 {
+	enum STATE {IDLE, WALK, DEAD, END};
+
 public:
 	CPlayer();
 	virtual ~CPlayer();
@@ -15,7 +17,8 @@ public:
 	void Key_Check();
 	void Move_Player();
 	void Move_Scroll();
-	void Check_Dead(list<CObj*>& _Stair);
+	void Check_State();
+	void Check_Dead();
 
 public:
 	int Get_StairCnt() { return m_iStairCnt; }
@@ -28,6 +31,10 @@ public:
 	virtual void Release() override;
 
 private:
+	DWORD		m_dwDeadTime;
+	STATE		m_ePreState;
+	STATE		m_eCurState;
+
 	bool		m_bStretch;
 
 	int			m_iStairCnt;

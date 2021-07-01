@@ -21,6 +21,7 @@ public:
 	void Delete_ID(OBJID::ID _eID);
 public:
 	CObj* Get_Player() { return m_listObj[OBJID::PLAYER].front(); }
+	CObj* Get_Stair() { return m_listObj[OBJID::STAIR].front(); }
 public:
 	static CObjMgr* Get_Instance()
 	{

@@ -3,9 +3,10 @@
 #include "KeyMgr.h"
 #include "ScrollMgr.h"
 #include "ObjMgr.h"
+#include "BmpMgr.h"
 
 CPlayer::CPlayer()
-	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f)
+	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f), m_ePreState(END), m_eCurState(END), m_dwDeadTime(GetTickCount())
 {
 }
 
@@ -17,23 +18,37 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo.fX = STAIR_INITPOS_X - STAIR_CX + 82;
-	m_tInfo.fY = STAIR_INITPOS_Y - STAIR_CY;
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Player2.bmp", L"Player");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Stretch.bmp", L"Stretch");
 
-	m_tInfo.iCX = 143;
+	m_tInfo.fX = STAIR_INITPOS_X - STAIR_CX + 82;
+	m_tInfo.fY = STAIR_INITPOS_Y - STAIR_CY + 67.5f;
+
+	m_tInfo.iCX = 220;
 	m_tInfo.iCY = 259;
+	
+	m_eCurState = IDLE;
 }
 
 int CPlayer::Update()
 {
 	if (m_bDead)
-		return OBJ_DEAD;
+	{
+		if (m_dwDeadTime + 1000 < GetTickCount())
+		{
+			m_tInfo.fY += 10.f;
+			if (m_tInfo.fY > WINCY + 200)
+			return OBJ_DEAD;
+		}
+	}
+		Update_Rect();
+		Update_Frame();
+		Key_Check();
+		Check_State();
+		Check_Dead();
+		Move_Scroll();
+		return OBJ_NOEVENT;
 
-	//Update_Frame();
-	Update_Rect();
-	Key_Check();
-	Move_Scroll();
-	return OBJ_NOEVENT;
 }
 
 void CPlayer::Late_Update()
@@ -45,7 +60,39 @@ void CPlayer::Render(HDC _DC)
 	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	Rectangle(_DC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+	//Rectangle(_DC, m_tRect.left + iScrollX, m_tRect.top + iScrollY, m_tRect.right + iScrollX, m_tRect.bottom + iScrollY);
+
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Player");
+	HDC hStretchDC = CBmpMgr::Get_Instance()->Find_Image(L"Stretch");
+
+	if (m_bStretch)
+	{
+		StretchBlt(hStretchDC
+			, 0, 0
+			, m_tInfo.iCX, m_tInfo.iCY
+			, hMemDC
+			, m_tFrame.iStartX * m_tInfo.iCX + m_tInfo.iCX, m_tFrame.iStateY * m_tInfo.iCY
+			, -m_tInfo.iCX, m_tInfo.iCY
+			, SRCCOPY);
+
+		GdiTransparentBlt(_DC
+			, m_tRect.left + iScrollX, m_tRect.top + iScrollY
+			, m_tInfo.iCX, m_tInfo.iCY
+			, hStretchDC
+			, 0, 0
+			, m_tInfo.iCX, m_tInfo.iCY
+			, RGB(0, 255, 0));
+	}
+	else
+	{
+		GdiTransparentBlt(_DC
+			, m_tRect.left + iScrollX, m_tRect.top + iScrollY
+			, m_tInfo.iCX, m_tInfo.iCY
+			, hMemDC
+			, m_tFrame.iStartX * m_tInfo.iCX, m_tFrame.iStateY * m_tInfo.iCY
+			, m_tInfo.iCX, m_tInfo.iCY
+			, RGB(0, 255, 0));
+	}
 }
 
 void CPlayer::Release()
@@ -55,23 +102,29 @@ void CPlayer::Release()
 
 void CPlayer::Update_Rect()
 {
-	/*m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
+	m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
 	m_tRect.top = (LONG)(m_tInfo.fY - m_tInfo.iCY);
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
-	m_tRect.bottom = (LONG)m_tInfo.fY;*/
+	m_tRect.bottom = (LONG)m_tInfo.fY;
 
-	m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
+	/*m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
 	m_tRect.top = (LONG)(m_tInfo.fY - (m_tInfo.iCY >> 1));
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
-	m_tRect.bottom = (LONG)(m_tInfo.fY + (m_tInfo.iCY >> 1));
+	m_tRect.bottom = (LONG)(m_tInfo.fY + (m_tInfo.iCY >> 1));*/
 }
 
 void CPlayer::Update_Frame()
 {
-	if (m_tFrame.dwDelayTime + m_tFrame.dwTime < GetTickCount())
+	if (m_tFrame.dwDelayTime + m_tFrame.dwTime < GetTickCount() && !m_bDead)
 	{
 		++m_tFrame.iStartX;
 		m_tFrame.dwTime = GetTickCount();
+
+		if (m_ePreState == WALK)
+		{
+			if (m_tFrame.iStartX % 2)
+				m_eCurState = IDLE;
+		}
 
 		if (m_tFrame.iStartX >= m_tFrame.iEndX)
 			m_tFrame.iStartX = 0;
@@ -97,17 +150,17 @@ void CPlayer::Move_Player()
 	{
 		m_tInfo.fX += STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
+
 		++m_iStairCnt;
-		//CScrollMgr::Get_Instance()->Set_ScrollX(-STAIR_CX);
-		//CScrollMgr::Get_Instance()->Set_ScrollY(STAIR_CY);
+		m_eCurState = WALK;
 	}
 	else
 	{
 		m_tInfo.fX -= STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
+
 		++m_iStairCnt;
-		//CScrollMgr::Get_Instance()->Set_ScrollX(+STAIR_CX);
-		//CScrollMgr::Get_Instance()->Set_ScrollY(STAIR_CY);
+		m_eCurState = WALK;
 	}
 	m_fStairCX += STAIR_CX;
 	m_fStairCY += STAIR_CY;
@@ -115,7 +168,7 @@ void CPlayer::Move_Player()
 
 void CPlayer::Move_Scroll()
 {
-	if (m_fStairCX > 0)
+	if (m_fStairCX > 0 && !m_bDead)
 	{
 		if (m_bStretch)
 		{
@@ -134,7 +187,49 @@ void CPlayer::Move_Scroll()
 	}	
 }
 
-void CPlayer::Check_Dead(list<CObj*>& _Stair)
+void CPlayer::Check_State()
+{
+	if (m_ePreState != m_eCurState)
+	{
+		switch (m_eCurState)
+		{
+		case CPlayer::IDLE:
+			m_tFrame.iStartX = 0;
+			m_tFrame.iEndX = 1;
+			m_tFrame.iStateY = IDLE;
+			m_tFrame.dwDelayTime = 200;
+			m_tFrame.dwTime = GetTickCount();
+			break;
+		case CPlayer::WALK:
+			m_tFrame.iStartX = 0;
+			m_tFrame.iEndX = 4;
+			m_tFrame.iStateY = WALK;
+			m_tFrame.dwDelayTime = 100;
+			m_tFrame.dwTime = GetTickCount();
+			break;
+		case CPlayer::DEAD:
+			m_tFrame.iStartX = 0;
+			m_tFrame.iEndX = 1;
+			m_tFrame.iStateY = DEAD;
+			m_tFrame.dwDelayTime = 200;
+			m_tFrame.dwTime = GetTickCount();
+			break;
+		}
+
+		m_ePreState = m_eCurState;
+	}
+}
+
+void CPlayer::Check_Dead()
 {	
-	m_bDead = true;
+	if (m_iStairCnt > 0 && !m_bDead)
+	{
+		if (CObjMgr::Get_Instance()->Get_Stair()[m_iStairCnt - 1].Get_Info().fX != m_tInfo.fX)
+		{
+			--m_iStairCnt;
+			m_eCurState == DEAD;
+			m_bDead = true;
+			m_dwDeadTime = GetTickCount();
+		}
+	}
 }
