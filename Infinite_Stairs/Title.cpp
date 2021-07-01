@@ -29,6 +29,7 @@ int CTitle::Update()
 
 void CTitle::Late_Update()
 {
+	//demp
 }
 
 void CTitle::Render(HDC _DC)
