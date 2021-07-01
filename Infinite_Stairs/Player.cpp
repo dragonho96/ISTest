@@ -3,6 +3,7 @@
 #include "KeyMgr.h"
 #include "ScrollMgr.h"
 #include "ObjMgr.h"
+#include "StairMgr.h"
 #include "BmpMgr.h"
 
 CPlayer::CPlayer()
@@ -34,9 +35,10 @@ int CPlayer::Update()
 {
 	if (m_bDead)
 	{
+		//Update_Frame();
 		if (m_dwDeadTime + 1000 < GetTickCount())
 		{
-			m_tInfo.fY += 10.f;
+			m_tInfo.fY += 15.f;
 			if (m_tInfo.fY > WINCY + 200)
 			return OBJ_DEAD;
 		}
@@ -123,6 +125,9 @@ void CPlayer::Update_Frame()
 		if (m_ePreState == WALK)
 		{
 			if (m_tFrame.iStartX % 2)
+			
+
+			if (m_tFrame.iStartX % 2)
 				m_eCurState = IDLE;
 		}
 
@@ -133,12 +138,12 @@ void CPlayer::Update_Frame()
 
 void CPlayer::Key_Check()
 {
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT))
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_LEFT) && !m_bDead)
 	{
 		m_bStretch = !m_bStretch;
 		Move_Player();
 	}
-	else if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT))
+	else if (CKeyMgr::Get_Instance()->Key_Down(VK_RIGHT) && !m_bDead)
 	{
 		Move_Player();
 	}
@@ -150,7 +155,6 @@ void CPlayer::Move_Player()
 	{
 		m_tInfo.fX += STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
-
 		++m_iStairCnt;
 		m_eCurState = WALK;
 	}
@@ -158,7 +162,6 @@ void CPlayer::Move_Player()
 	{
 		m_tInfo.fX -= STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
-
 		++m_iStairCnt;
 		m_eCurState = WALK;
 	}
@@ -172,13 +175,13 @@ void CPlayer::Move_Scroll()
 	{
 		if (m_bStretch)
 		{
-			CScrollMgr::Get_Instance()->Set_ScrollX(-16.4);
-			CScrollMgr::Get_Instance()->Set_ScrollY(9);
+			CScrollMgr::Get_Instance()->Set_ScrollX(-16.4f);
+			CScrollMgr::Get_Instance()->Set_ScrollY(9.f);
 		}
 		else
 		{
-			CScrollMgr::Get_Instance()->Set_ScrollX(+16.4);
-			CScrollMgr::Get_Instance()->Set_ScrollY(9);
+			CScrollMgr::Get_Instance()->Set_ScrollX(+16.4f);
+			CScrollMgr::Get_Instance()->Set_ScrollY(9.f);
 		}
 		m_fStairCX -= 16.4f;
 		m_fStairCY -= 9.f;
@@ -224,10 +227,10 @@ void CPlayer::Check_Dead()
 {	
 	if (m_iStairCnt > 0 && !m_bDead)
 	{
-		if (CObjMgr::Get_Instance()->Get_Stair()[m_iStairCnt - 1].Get_Info().fX != m_tInfo.fX)
+		if (CStairMgr::Get_Instance()->Get_Stair(m_iStairCnt - 1)->Get_Info().fX != m_tInfo.fX)
 		{
 			--m_iStairCnt;
-			m_eCurState == DEAD;
+			m_eCurState = DEAD;
 			m_bDead = true;
 			m_dwDeadTime = GetTickCount();
 		}
