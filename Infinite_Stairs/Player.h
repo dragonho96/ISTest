@@ -18,6 +18,9 @@ public:
 	void Check_Dead(list<CObj*>& _Stair);
 
 public:
+	int Get_StairCnt() { return m_iStairCnt; }
+
+public:
 	virtual void Initialize() override;
 	virtual int Update() override;
 	virtual void Late_Update() override;
@@ -27,7 +30,7 @@ public:
 private:
 	bool		m_bStretch;
 
-	int			m_iStairCount;
+	int			m_iStairCnt;
 	float		m_fStairCX;
 	float		m_fStairCY;
 };

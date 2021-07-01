@@ -5,7 +5,7 @@
 #include "ObjMgr.h"
 
 CPlayer::CPlayer()
-	: m_bStretch(false), m_iStairCount(0), m_fStairCX(0.f), m_fStairCY(0.f)
+	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f)
 {
 }
 
@@ -97,7 +97,7 @@ void CPlayer::Move_Player()
 	{
 		m_tInfo.fX += STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
-		++m_iStairCount;
+		++m_iStairCnt;
 		//CScrollMgr::Get_Instance()->Set_ScrollX(-STAIR_CX);
 		//CScrollMgr::Get_Instance()->Set_ScrollY(STAIR_CY);
 	}
@@ -105,7 +105,7 @@ void CPlayer::Move_Player()
 	{
 		m_tInfo.fX -= STAIR_CX;
 		m_tInfo.fY -= STAIR_CY;
-		++m_iStairCount;
+		++m_iStairCnt;
 		//CScrollMgr::Get_Instance()->Set_ScrollX(+STAIR_CX);
 		//CScrollMgr::Get_Instance()->Set_ScrollY(STAIR_CY);
 	}
