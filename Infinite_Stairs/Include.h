@@ -7,5 +7,7 @@
 #include "Struct.h"
 #include "Function.h"
 #include "Enum.h"
+#include "AbstractFactory.h"
+#include "Functor.h"
 
 #endif // !__INCLUDE_H__

@@ -5,7 +5,7 @@
 
 namespace OBJID
 {
-	enum ID { PLAYER, STAIR, COIN, UI, END };
+	enum ID { PLAYER, STAIR, COIN, MENUUI, STAGEUI, END };
 }
 
 namespace RENDERID

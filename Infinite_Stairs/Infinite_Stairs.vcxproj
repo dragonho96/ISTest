@@ -145,6 +145,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Counter.h" />
@@ -154,11 +156,13 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="Function.h" />
+    <ClInclude Include="Functor.h" />
     <ClInclude Include="Gauge.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="Infinite_Stairs.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MyBitmap.h" />
     <ClInclude Include="MyButton.h" />
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="Obj.h" />
@@ -177,6 +181,7 @@
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Counter.cpp" />
@@ -186,6 +191,7 @@
     <ClCompile Include="Infinite_Stairs.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="MyBitmap.cpp" />
     <ClCompile Include="MyButton.cpp" />
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="Obj.cpp" />

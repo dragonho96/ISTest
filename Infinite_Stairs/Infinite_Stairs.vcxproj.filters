@@ -65,12 +65,15 @@
     <ClCompile Include="End.cpp">
       <Filter>소스 파일\02.Scene\03.End</Filter>
     </ClCompile>
+    <ClCompile Include="BmpMgr.cpp">
+      <Filter>소스 파일\99.Manager\06.BitmapMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBitmap.cpp">
+      <Filter>소스 파일\03.MyBitmap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
-      <Filter>헤더 파일\99.Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Include.h">
       <Filter>헤더 파일\99.Headers</Filter>
     </ClInclude>
     <ClInclude Include="Enum.h">
@@ -155,6 +158,21 @@
     <ClInclude Include="End.h">
       <Filter>소스 파일\02.Scene\03.End</Filter>
     </ClInclude>
+    <ClInclude Include="Functor.h">
+      <Filter>헤더 파일\99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>헤더 파일\99.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BmpMgr.h">
+      <Filter>소스 파일\99.Manager\06.BitmapMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBitmap.h">
+      <Filter>소스 파일\03.MyBitmap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Infinite_Stairs.ico">
@@ -236,6 +254,12 @@
     </Filter>
     <Filter Include="소스 파일\02.Scene\03.End">
       <UniqueIdentifier>{77967957-f160-4094-9ffe-2d1a6f745d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Manager\06.BitmapMgr">
+      <UniqueIdentifier>{3a297c0a-60f3-4826-a03e-ad84758f34eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03.MyBitmap">
+      <UniqueIdentifier>{87bd564e-7972-4794-88b0-137eeb3f3c99}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

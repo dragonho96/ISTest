@@ -14,9 +14,6 @@ CTitle::~CTitle()
 
 void CTitle::Initialize()
 {
-	m_tInfo.iCX = 150;
-	m_tInfo.iCY = 150;
-
 
 }
 
@@ -36,7 +33,7 @@ void CTitle::Late_Update()
 
 void CTitle::Render(HDC _DC)
 {
-	
+	Rectangle(_DC, m_tRect.left, m_tRect.top, m_tRect.bottom, m_tRect.right);
 }
 
 void CTitle::Release()

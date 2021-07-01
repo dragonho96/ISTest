@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Counter.h"
-
-
+#include "SceneMgr.h"
+#include "ObjMgr.h"
+#include "Player.h"
 CCounter::CCounter()
 {
 }
@@ -15,8 +16,6 @@ CCounter::~CCounter()
 
 void CCounter::Initialize()
 {
-	m_tInfo.iCX = 150;
-	m_tInfo.iCY = 150;
 
 }
 
@@ -35,6 +34,13 @@ void CCounter::Late_Update()
 
 void CCounter::Render(HDC _DC)
 {
+	if (!lstrcmp(m_pFrameKey, L"StairCnt"))
+	{
+		int stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
+		while (stair_cnt > 0) {
+
+		}
+	}
 }
 
 void CCounter::Release()
