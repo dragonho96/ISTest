@@ -58,7 +58,6 @@ void CStairMgr::Add_Stair()
 	}
 
 	CObj* pLastStair = m_dequeStair.back();
-
 	INFO tPrevInfo = pLastStair->Get_Info();
 
 	INFO tInfo = {};
