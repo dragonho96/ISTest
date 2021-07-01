@@ -2,7 +2,7 @@
 #include "Gauge.h"
 
 
-CGauge::CGauge():count(0)
+CGauge::CGauge() :count(0)
 {
 }
 
@@ -15,12 +15,8 @@ CGauge::~CGauge()
 
 void CGauge::Initialize()
 {
-	m_tInfo.iCX = 150;
-	m_tInfo.iCY = 150;
-
 	m_dwTime = GetTickCount();
 	m_dwDelayTime = 200;
-
 }
 
 int CGauge::Update()
@@ -39,7 +35,7 @@ void CGauge::Late_Update()
 	if (count == 100) {
 		//플레이어 사망 후 씬 전환
 	}
-	
+
 }
 
 void CGauge::Render(HDC _DC)

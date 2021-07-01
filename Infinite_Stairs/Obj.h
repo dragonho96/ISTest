@@ -14,8 +14,9 @@ public:
 	virtual void Late_Update() = 0;
 	virtual void Render(HDC _DC) = 0;
 	virtual void Release() = 0;
-
+public:
 	void Update_Rect();
+	void Set_Pos(int _x, int _y) { m_tInfo.fX = _x; m_tInfo.fY = _y; }
 public:
 	void Set_FrameKey(const TCHAR* _pKey) { m_pFrameKey = _pKey; }
 public:

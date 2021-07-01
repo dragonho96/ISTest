@@ -19,7 +19,8 @@ public:
 
 public:
 	void Delete_ID(OBJID::ID _eID);
-
+public:
+	CObj* Get_Player() { return m_listObj[OBJID::PLAYER].front(); }
 public:
 	static CObjMgr* Get_Instance()
 	{
