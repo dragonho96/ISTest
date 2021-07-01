@@ -23,6 +23,8 @@ void CMainGame::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Stair.bmp", L"Stair");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/BackBuffer.bmp", L"BackBuffer");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Background_Street.bmp", L"Background_Street");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Background_Sky.bmp", L"Background_Sky");
 
 	m_hDC = GetDC(g_hWnd);
 	CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::STAGE);
@@ -31,6 +33,7 @@ void CMainGame::Initialize()
 void CMainGame::Update()
 {
 	CSceneMgr::Get_Instance()->Update();
+	
 }
 
 void CMainGame::Late_Update()

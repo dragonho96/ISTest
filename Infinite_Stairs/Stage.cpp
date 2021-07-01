@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Gauge.h"
 #include "Counter.h"
+#include "BackgroundMgr.h"
 CStage::CStage()
 {
 }
@@ -17,7 +18,6 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
-	CStairMgr::Get_Instance()->Initialize();
 	CObj* pObj = new CPlayer;
 	pObj->Initialize();
 	CObjMgr::Get_Instance()->Add_Object(pObj, OBJID::PLAYER);
@@ -26,12 +26,14 @@ void CStage::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CGauge>::Create(200, 220, 200, 50, L"Gauge"), OBJID::STAGEUI);
 	
 	CStairMgr::Get_Instance()->Initialize();
+	CBackgroundMgr::Get_Instance()->Initialize();
 }
 
 void CStage::Update()
 {
+	CBackgroundMgr::Get_Instance()->Update();
 	CObjMgr::Get_Instance()->Update();
-
+	
 }
 
 void CStage::Late_Update()
