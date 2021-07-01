@@ -5,6 +5,9 @@
 #include "Player.h"
 #include "Gauge.h"
 #include "Counter.h"
+#include "BackgroundMgr.h"
+#include "ScrollMgr.h"
+
 CStage::CStage()
 {
 }
@@ -26,12 +29,14 @@ void CStage::Initialize()
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CGauge>::Create(200, 220, 200, 50, L"Gauge"), OBJID::STAGEUI);
 	
 	CStairMgr::Get_Instance()->Initialize();
+	CBackgroundMgr::Get_Instance()->Initialize();
+	CScrollMgr::Get_Instance()->Set_ScrollX(-(STAIR_INITPOS_X - (WINCX / 2)));
 }
 
 void CStage::Update()
 {
 	CObjMgr::Get_Instance()->Update();
-
+	CBackgroundMgr::Get_Instance()->Update();
 }
 
 void CStage::Late_Update()
