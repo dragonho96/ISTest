@@ -24,7 +24,7 @@ void CStairMgr::Initialize()
 	CObj* pFirstStair;
 	for (int i = 0; i < 3; ++i)
 	{
-		pFirstStair = new CStair(INFO(STAIR_INITPOS_X - (i * STAIR_CX), STAIR_INITPOS_Y - (i * STAIR_CY), STAIR_CX, STAIR_CY));
+		pFirstStair = new CStair(INFO(STAIR_INITPOS_X - ((i + 1) * STAIR_CX), STAIR_INITPOS_Y - (i * STAIR_CY), STAIR_CX, STAIR_CY));
 		pFirstStair->Initialize();
 		m_dequeStair.emplace_back(pFirstStair);
 		CObjMgr::Get_Instance()->Add_Object(pFirstStair, OBJID::STAIR);

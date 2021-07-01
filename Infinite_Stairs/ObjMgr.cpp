@@ -32,10 +32,6 @@ void CObjMgr::Update()
 				++iter;
 		}
 	}
-
-	if (!m_listObj[OBJID::PLAYER].empty())
-		static_cast<CPlayer*>(m_listObj[OBJID::PLAYER].front())->Check_Dead(m_listObj[OBJID::STAIR]);
-
 }
 
 void CObjMgr::Late_Update()

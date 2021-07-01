@@ -24,7 +24,7 @@ int CMyButton::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
-	POINT	pt = {};
+	/*POINT	pt = {};
 	GetCursorPos(&pt);
 	ScreenToClient(g_hWnd, &pt);
 
@@ -46,7 +46,7 @@ int CMyButton::Update()
 			
 		}
 	}
-	Update_Rect();
+	Update_Rect();*/
 	return OBJ_NOEVENT;
 }
 

@@ -14,6 +14,7 @@ public:
 	void Update_Frame();
 	void Key_Check();
 	void Move_Player();
+	void Move_Scroll();
 	void Check_Dead(list<CObj*>& _Stair);
 
 public:
@@ -25,6 +26,10 @@ public:
 
 private:
 	bool		m_bStretch;
+
+	int			m_iStairCount;
+	float		m_fStairCX;
+	float		m_fStairCY;
 };
 
 #endif

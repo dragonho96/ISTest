@@ -10,8 +10,8 @@
 #define OBJ_NOEVENT		0
 #define OBJ_DEAD		1
 
-#define STAIR_CX 50
-#define STAIR_CY 30
+#define STAIR_CX 82
+#define STAIR_CY 45
 #define COIN_CX 15
 #define COIN_CY 15
 
