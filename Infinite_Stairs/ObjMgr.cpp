@@ -50,7 +50,7 @@ void CObjMgr::Late_Update()
 
 void CObjMgr::Render(HDC _DC)
 {
-	for (int i = 0; i < RENDERID::END; ++i)
+	for (int i = 0; i < OBJID::END; ++i)
 	{
 		for (auto& pObj : m_listObj[i])
 			pObj->Render(_DC);

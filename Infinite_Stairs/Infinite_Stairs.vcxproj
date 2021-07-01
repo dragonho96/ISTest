@@ -146,6 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="BackgroundMgr.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="CollisionMgr.h" />
@@ -182,6 +184,8 @@
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BackgroundMgr.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
