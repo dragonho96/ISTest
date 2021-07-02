@@ -11,6 +11,9 @@ private:
 public:
 	void Initialize();
 	void Update(); // µð¹ö±ë¿ë
+
+public:
+	int Get_ScrollFactor() { return m_iScrollFactor; }
 public:
 	static CBackgroundMgr* Get_Instance()
 	{
@@ -27,6 +30,7 @@ public:
 private:
 	static CBackgroundMgr*	m_pInstance;
 	deque<CObj*>			m_dequeBackground;
+	int						m_iScrollFactor;
 };
 
 #endif // !__BACKGROUNDMGR_H__

@@ -143,6 +143,10 @@ void CPlayer::Update_Rect()
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
 	m_tRect.bottom = (LONG)m_tInfo.fY;
 
+	m_tRectBottom.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
+	m_tRectBottom.top = (LONG)(m_tInfo.fY - 10.f);
+	m_tRectBottom.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
+	m_tRectBottom.bottom = (LONG)m_tInfo.fY;
 	/*m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
 	m_tRect.top = (LONG)(m_tInfo.fY - (m_tInfo.iCY >> 1));
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
@@ -246,7 +250,7 @@ void CPlayer::Check_State()
 				m_tFrame.iStartX = 2;
 			m_tFrame.iEndX = 4;
 			m_tFrame.iStateY = WALK;
-			m_tFrame.dwDelayTime = 1000;
+			m_tFrame.dwDelayTime = 100;
 			m_tFrame.dwTime = GetTickCount();
 			break;
 		case CPlayer::DEAD:
