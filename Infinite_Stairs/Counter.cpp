@@ -39,10 +39,11 @@ void CCounter::Render(HDC _DC)
 	int idx = 0;
 	int stair_cnt = 0;
 	//int coin_cnt = 0;
+
+
 	if (!CObjMgr::Get_Instance()->PlayerEmpty())
 		stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
 	int Ccnt = num_of_digit(stair_cnt);
-	
 	if (!lstrcmp(m_pFrameKey, L"StairCnt"))
 	{
 		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"StairCnt");
@@ -58,7 +59,7 @@ void CCounter::Render(HDC _DC)
 		else {
 			while (stair_cnt > 0) {
 				GdiTransparentBlt(_DC
-					, m_tRect.left - (idx*m_tInfo.iCX) + (Ccnt * (m_tInfo.iCX >> 1)), m_tRect.top
+					, m_tRect.left - (idx*m_tInfo.iCX) + ((Ccnt - 1) * (m_tInfo.iCX >> 1)), m_tRect.top
 					, m_tInfo.iCX, m_tInfo.iCY
 					, hMemDC
 					, m_tInfo.iCX * (stair_cnt % 10), 0
@@ -68,10 +69,30 @@ void CCounter::Render(HDC _DC)
 				idx++;
 			}
 		}
-		
-
-
 	}
+
+
+	idx = 0;
+	int stair_max = CObjMgr::Get_Instance()->Get_StairMax();
+	Ccnt = num_of_digit(stair_max);
+	if (!lstrcmp(m_pFrameKey, L"StairCntMax"))
+	{
+		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"StairCnt");
+		while (stair_max > 0) {
+			GdiTransparentBlt(_DC
+				, m_tRect.left - (idx*m_tInfo.iCX) + (Ccnt * (m_tInfo.iCX >> 1)), m_tRect.top
+				, m_tInfo.iCX, m_tInfo.iCY
+				, hMemDC
+				, m_tInfo.iCX * (stair_max % 10), 0
+				, m_tInfo.iCX, m_tInfo.iCY
+				, RGB(255, 255, 255));
+			stair_max /= 10;
+			idx++;
+		}
+		
+	}
+
+
 	idx = 0;
 	//Ccnt = num_of_digit(coin_cnt);
 	/*if (!lstrcmp(m_pFrameKey, L"CoinCnt"))

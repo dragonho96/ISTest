@@ -17,7 +17,8 @@ public:
 	void Late_Update();
 	void Render(HDC _DC);
 	void Release();
-
+public:
+	CScene* Get_Scene() { return m_pScene; }
 public:
 	static CSceneMgr*	Get_Instance() {
 		if (!m_Instance)

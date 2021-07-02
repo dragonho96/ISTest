@@ -20,7 +20,7 @@ public:
 	virtual void Render(HDC _DC) override;
 	virtual void Release() override;
 public:
-	void Set_Count(int _cnt) { count = _cnt; }
+	void Set_Count(int _cnt);
 public:
 	int Get_Count() { return count; }
 private:

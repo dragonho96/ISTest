@@ -5,7 +5,7 @@
 
 CObjMgr* CObjMgr::m_pInstance = nullptr;
 
-CObjMgr::CObjMgr()
+CObjMgr::CObjMgr() : m_iStairMax(0)
 {
 }
 
@@ -70,5 +70,10 @@ void CObjMgr::Delete_ID(OBJID::ID _eID)
 {
 	for_each(m_listObj[_eID].begin(), m_listObj[_eID].end(), Safe_Delete<CObj*>);
 	m_listObj[_eID].clear();
+}
+
+void CObjMgr::Set_StairMax(int _cnt)
+{
+	m_iStairMax = m_iStairMax > _cnt ? m_iStairMax : _cnt;
 }
 

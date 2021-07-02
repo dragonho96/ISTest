@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "Gauge.h"
 #include "BmpMgr.h"
-
+#include "KeyMgr.h"
+#include "ObjMgr.h"
+#include "Player.h"
 CGauge::CGauge()
 {
 }
@@ -23,10 +25,14 @@ int CGauge::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
-	if (m_dwTime + m_dwDelayTime < GetTickCount()) {
+	int stair_cnt = 0;
+	//if (!CObjMgr::Get_Instance()->PlayerEmpty())
+	//	stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
+	if (m_dwTime + (m_dwDelayTime - stair_cnt) < GetTickCount()) {
 		++count;
 		m_dwTime = GetTickCount();
-	}
+	}	
+
 	Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -34,7 +40,7 @@ int CGauge::Update()
 void CGauge::Late_Update()
 {
 	if (count == 100) {
-		//ÇÃ·¹ÀÌ¾î »ç¸Á ÈÄ ¾À ÀüÈ¯
+		CObjMgr::Get_Instance()->Get_Player()->Set_Dead();
 	}
 
 }
@@ -50,9 +56,18 @@ void CGauge::Render(HDC _DC)
 		, 786, 124	
 		, RGB(0, 255, 0));
 	hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Gauge");
-	BitBlt(_DC, m_tRect.left + 11, m_tRect.top + 13, m_tInfo.iCX - m_tInfo.iCX*(count * 0.01) - 20, m_tInfo.iCY - 25, hMemDC, 0, 0, SRCCOPY);
+	BitBlt(_DC, m_tRect.left + 11, m_tRect.top + 13, (m_tInfo.iCX - 20) - (m_tInfo.iCX-20)*(count * 0.01) , m_tInfo.iCY - 25, hMemDC, 0, 0, SRCCOPY);
 }
 
 void CGauge::Release()
 {
+}
+
+void CGauge::Set_Count(int _cnt)
+{
+	if (count < 10) 
+		count = 0;
+	if (count >= 10) 
+		count += _cnt;
+	
 }

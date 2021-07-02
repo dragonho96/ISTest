@@ -26,7 +26,7 @@ public:
 public:
 	void Set_ScrollX(float _fScrollX) { m_fScrollX += _fScrollX; }
 	void Set_ScrollY(float _fScrollY) { m_fScrollY += _fScrollY; }
-
+	void Set_ScrollFix(float _fx, float _fy) { m_fScrollX = _fx; m_fScrollY = _fy; }
 public:
 	float Get_ScrollX() { return m_fScrollX; }
 	float Get_ScrollY() { return m_fScrollY; }

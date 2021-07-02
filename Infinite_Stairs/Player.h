@@ -38,6 +38,7 @@ private:
 	bool		m_bStretch;
 	bool		m_bRightLeg;
 
+	int			m_iCoinCnt;
 	int			m_iStairCnt;
 	float		m_fStairCX;
 	float		m_fStairCY;

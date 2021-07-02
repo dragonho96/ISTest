@@ -5,7 +5,8 @@
 #include "ObjMgr.h"
 #include "StairMgr.h"
 #include "BmpMgr.h"
-
+#include "Gauge.h"
+#include "SceneMgr.h"
 CPlayer::CPlayer()
 	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f), m_ePreState(END), m_eCurState(END), m_dwDeadTime(GetTickCount()), m_bRightLeg(true)
 {
@@ -30,11 +31,7 @@ void CPlayer::Initialize()
 	
 	m_eCurState = IDLE;
 
-	m_tFrame.iStartX = 0;
-	m_tFrame.iEndX = 1;
-	m_tFrame.iStateY = IDLE;
-	m_tFrame.dwDelayTime = 200;
-	m_tFrame.dwTime = GetTickCount();
+	Check_State();
 	Update_Rect();
 
 }
@@ -47,8 +44,11 @@ int CPlayer::Update()
 		if (m_dwDeadTime + 1000 < GetTickCount())
 		{
 			m_tInfo.fY += 15.f;
-			if (m_tInfo.fY > WINCY + 200)
-			return OBJ_DEAD;
+			if (m_tInfo.fY > WINCY + 200) {
+				CObjMgr::Get_Instance()->Set_StairMax(m_iStairCnt);
+				CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::GAMEOVER);
+				return OBJ_DEAD;
+			}
 		}
 	}
 		Update_Rect();
@@ -201,7 +201,7 @@ void CPlayer::Move_Player()
 	}
 	m_fStairCX += STAIR_CX;
 	m_fStairCY += STAIR_CY;
-
+	static_cast<CGauge*>(CObjMgr::Get_Instance()->Get_Gauge().front())->Set_Count(-10);
 	CStairMgr::Get_Instance()->Add_Stair();
 }
 
@@ -246,7 +246,7 @@ void CPlayer::Check_State()
 				m_tFrame.iStartX = 2;
 			m_tFrame.iEndX = 4;
 			m_tFrame.iStateY = WALK;
-			m_tFrame.dwDelayTime = 1000;
+			m_tFrame.dwDelayTime = 100;
 			m_tFrame.dwTime = GetTickCount();
 			break;
 		case CPlayer::DEAD:
