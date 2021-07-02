@@ -39,7 +39,6 @@ void CBackground::Render(HDC _DC)
 {
 	int iScrollFactor = 1;
 	if (lstrcmp(L"Background_Street", m_pFrameKey))
-		//iScrollFactor = CBackgroundMgr::Get_Instance()->Get_ScrollFactor();
 		iScrollFactor = 10;
 
 	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX() / iScrollFactor;

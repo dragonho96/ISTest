@@ -9,7 +9,7 @@
 CBackgroundMgr* CBackgroundMgr::m_pInstance = nullptr;
 
 CBackgroundMgr::CBackgroundMgr()
-	: m_iScrollFactor(1)
+	: m_iScrollFactor(10)
 {
 }
 
@@ -20,10 +20,6 @@ CBackgroundMgr::~CBackgroundMgr()
 
 void CBackgroundMgr::Initialize()
 {
-
-
-	//CObj* pSkyBottom = new CBackground(INFO(BACKGROUND_SKY_CX / 2, pStreet->Get_Rect().top - BACKGROUND_SKY_CY / 2,
-	//	BACKGROUND_SKY_CX, BACKGROUND_SKY_CY));
 	CObj* pSkyBottom = new CBackground(INFO(BACKGROUND_SKY_CX / 2, WINCY - BACKGROUND_SKY_CY / 2,
 		BACKGROUND_SKY_CX, BACKGROUND_SKY_CY));
 	pSkyBottom->Initialize();
@@ -47,14 +43,6 @@ void CBackgroundMgr::Initialize()
 
 void CBackgroundMgr::Update()
 {
-	//if (CScrollMgr::Get_Instance()->Get_ScrollY() > 1000)
-	//	m_iScrollFactor = 10;
-	//else
-	//	m_iScrollFactor = 1;
-
-	m_iScrollFactor = 10;
-
-
 	// µð¹ö±ë¿ë
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_UP))
 	{
