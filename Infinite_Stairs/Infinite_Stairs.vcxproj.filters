@@ -74,9 +74,11 @@
     <ClCompile Include="SceneMgr.cpp">
       <Filter>소스 파일\99.Manager\07.SceneMgr</Filter>
     </ClCompile>
-    <ClCompile Include="BackgroundMgr.cpp" />
     <ClCompile Include="Background.cpp">
       <Filter>소스 파일\01.Obj\04.Background</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMgr.cpp">
+      <Filter>소스 파일\99.Manager\08.BackgroundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -183,9 +185,11 @@
     <ClInclude Include="SceneMgr.h">
       <Filter>소스 파일\99.Manager\07.SceneMgr</Filter>
     </ClInclude>
-    <ClInclude Include="BackgroundMgr.h" />
     <ClInclude Include="Background.h">
       <Filter>소스 파일\01.Obj\04.Background</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMgr.h">
+      <Filter>소스 파일\99.Manager\08.BackgroundMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,12 +280,13 @@
       <UniqueIdentifier>{87bd564e-7972-4794-88b0-137eeb3f3c99}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\99.Manager\07.SceneMgr">
-
       <UniqueIdentifier>{9a050696-c029-405e-aa13-4e05d8bbcfdf}</UniqueIdentifier>
-
     </Filter>
     <Filter Include="소스 파일\01.Obj\04.Background">
       <UniqueIdentifier>{a8e5d77b-d645-46c6-a930-ca4540acbf6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\99.Manager\08.BackgroundMgr">
+      <UniqueIdentifier>{796e62d9-43c5-47e1-93e7-c1c0a216637b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

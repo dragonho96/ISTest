@@ -52,7 +52,7 @@ void CBackgroundMgr::Update()
 	}
 
 	// 무한 스크롤
-	if (m_dequeBackground.front()->Get_Rect().top + CScrollMgr::Get_Instance()->Get_ScrollY() > WINCY)
+	if (m_dequeBackground.front()->Get_Rect().top + CScrollMgr::Get_Instance()->Get_ScrollY() / 10 > WINCY)
 	{
 		m_dequeBackground.front()->Set_Pos(BACKGROUND_SKY_CX / 2, m_dequeBackground.back()->Get_Rect().top - BACKGROUND_SKY_CY / 2);
 		m_dequeBackground.front()->Update_Rect();

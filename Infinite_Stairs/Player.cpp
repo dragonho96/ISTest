@@ -167,6 +167,8 @@ void CPlayer::Move_Player()
 	}
 	m_fStairCX += STAIR_CX;
 	m_fStairCY += STAIR_CY;
+
+	CStairMgr::Get_Instance()->Add_Stair();
 }
 
 void CPlayer::Move_Scroll()

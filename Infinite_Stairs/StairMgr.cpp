@@ -60,9 +60,9 @@ void CStairMgr::Add_Stair()
 	CObj* pLastStair = m_dequeStair.back();
 	INFO tPrevInfo = pLastStair->Get_Info();
 
-	if (tPrevInfo.fX < 100)
+	if (tPrevInfo.fX < 400)
 		m_bLeft = false;
-	else if (tPrevInfo.fX > BACKGROUND_SKY_CX - 100)
+	else if (tPrevInfo.fX > BACKGROUND_SKY_CX - 400)
 		m_bLeft = true;
 
 	INFO tInfo = {};
