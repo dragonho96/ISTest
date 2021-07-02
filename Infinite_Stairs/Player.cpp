@@ -246,7 +246,7 @@ void CPlayer::Check_State()
 				m_tFrame.iStartX = 2;
 			m_tFrame.iEndX = 4;
 			m_tFrame.iStateY = WALK;
-			m_tFrame.dwDelayTime = 1000;
+			m_tFrame.dwDelayTime = 100;
 			m_tFrame.dwTime = GetTickCount();
 			break;
 		case CPlayer::DEAD:
