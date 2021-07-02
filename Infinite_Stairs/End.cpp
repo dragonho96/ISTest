@@ -6,7 +6,8 @@
 #include "Counter.h"
 #include "MyButton.h"
 #include "Stage.h"
-
+#include "BmpMgr.h"
+#include "Text.h"
 CEnd::CEnd()
 {
 }
@@ -20,9 +21,18 @@ CEnd::~CEnd()
 void CEnd::Initialize()
 {
 	//gameover ui만 추가하면 끘
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/OverBack.bmp", L"OverBack");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/GameOver.bmp", L"GameOver");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Score.bmp", L"Score");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Best.bmp", L"Best");
 
-	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CCounter>::Create(200, 50, 55, 80, L"StairCntMax"), OBJID::OVERUI);
-	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CMyButton>::Create(400, 550, 80, 80, L"StartButton"), OBJID::OVERUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CMyButton>::Create(450, 650, 80, 80, L"StartButton"), OBJID::OVERUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CText>::Create(250, 400 , 370, 370, L"OverBack"), OBJID::OVERUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CText>::Create(250, 100, 350, 100, L"GameOver"), OBJID::OVERUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CText>::Create(250, 350, 150, 100, L"Best"), OBJID::OVERUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CCounter>::Create(225, 500, 55, 80, L"StairCntMax"), OBJID::OVERUI);
+	//CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CText>::Create(225, 100, 150, 100, L"Score"), OBJID::OVERUI);
+
 
 }
 

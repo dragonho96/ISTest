@@ -80,6 +80,9 @@
     <ClCompile Include="BackgroundMgr.cpp">
       <Filter>소스 파일\99.Manager\08.BackgroundMgr</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>소스 파일\01.Obj\99.UI\04.Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -191,6 +194,9 @@
     <ClInclude Include="BackgroundMgr.h">
       <Filter>소스 파일\99.Manager\08.BackgroundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>소스 파일\01.Obj\99.UI\04.Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Infinite_Stairs.ico">
@@ -287,6 +293,9 @@
     </Filter>
     <Filter Include="소스 파일\99.Manager\08.BackgroundMgr">
       <UniqueIdentifier>{796e62d9-43c5-47e1-93e7-c1c0a216637b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\01.Obj\99.UI\04.Text">
+      <UniqueIdentifier>{dba6687e-53d6-4d80-ada3-0601af49c0ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

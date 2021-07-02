@@ -30,6 +30,7 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/YellowNum.bmp", L"CoinCnt");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/GaugeBackGround.bmp", L"GaugeBackGround");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Gauge.bmp", L"Gauge");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/CoinPlate.bmp", L"CoinPlate");
 
 
 
