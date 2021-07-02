@@ -20,8 +20,11 @@ public:
 public:
 	void Delete_ID(OBJID::ID _eID);
 public:
+	bool PlayerEmpty() { return m_listObj[OBJID::PLAYER].empty(); }
+public:
 	CObj* Get_Player() { return m_listObj[OBJID::PLAYER].front(); }
 	CObj* Get_Stair() { return m_listObj[OBJID::STAIR].front(); }
+	list<CObj*> Get_MUI() { return m_listObj[OBJID::MENUUI]; }
 public:
 	static CObjMgr* Get_Instance()
 	{
