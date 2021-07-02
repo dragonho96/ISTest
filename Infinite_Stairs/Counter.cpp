@@ -35,30 +35,49 @@ void CCounter::Late_Update()
 
 void CCounter::Render(HDC _DC)
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"StairCnt");
+	HDC hMemDC;
 	int idx = 0;
-	int stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
-	int coin_cnt;
+	int stair_cnt = 0;
+	//int coin_cnt = 0;
+	if (!CObjMgr::Get_Instance()->PlayerEmpty())
+		stair_cnt = static_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Player())->Get_StairCnt();
+	int Ccnt = num_of_digit(stair_cnt);
+	
 	if (!lstrcmp(m_pFrameKey, L"StairCnt"))
 	{
-		
-		while (stair_cnt > 0) {
+		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"StairCnt");
+		if (stair_cnt == 0) {
 			GdiTransparentBlt(_DC
-				, m_tRect.left - (idx*m_tInfo.iCX) , m_tRect.top 
+				, m_tRect.left - (idx*m_tInfo.iCX) + (Ccnt * (m_tInfo.iCX >> 1)), m_tRect.top
 				, m_tInfo.iCX, m_tInfo.iCY
 				, hMemDC
-				, m_tInfo.iCX * (stair_cnt%10), 0
+				, 0, 0
 				, m_tInfo.iCX, m_tInfo.iCY
-				, RGB(0, 255, 0));
-			stair_cnt /= 10;
-			idx++;
+				, RGB(255, 255, 255));
 		}
+		else {
+			while (stair_cnt > 0) {
+				GdiTransparentBlt(_DC
+					, m_tRect.left - (idx*m_tInfo.iCX) + (Ccnt * (m_tInfo.iCX >> 1)), m_tRect.top
+					, m_tInfo.iCX, m_tInfo.iCY
+					, hMemDC
+					, m_tInfo.iCX * (stair_cnt % 10), 0
+					, m_tInfo.iCX, m_tInfo.iCY
+					, RGB(255, 255, 255));
+				stair_cnt /= 10;
+				idx++;
+			}
+		}
+		
 
 
 	}
 	idx = 0;
-	if (!lstrcmp(m_pFrameKey, L"CoinCnt"))
+	//Ccnt = num_of_digit(coin_cnt);
+	/*if (!lstrcmp(m_pFrameKey, L"CoinCnt"))
 	{
+		 hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"CoinCnt");
+
 		while (coin_cnt > 0) {
 			GdiTransparentBlt(_DC
 				, m_tRect.left - (idx*m_tInfo.iCX), m_tRect.top
@@ -66,15 +85,25 @@ void CCounter::Render(HDC _DC)
 				, hMemDC
 				, m_tInfo.iCX * (coin_cnt % 10), 0
 				, m_tInfo.iCX, m_tInfo.iCY
-				, RGB(0, 255, 0));
+				, RGB(255, 255, 255));
 			coin_cnt /= 10;
 			idx++;
 		}
-
-
-	}
+	}*/
 }
 
 void CCounter::Release()
 {
+}
+
+int CCounter::num_of_digit(int _num)
+{
+	if (_num == 0) {
+		return 0;
+	}
+	while (_num != 0)
+	{
+		return 1 + num_of_digit(_num / 10);
+	}
+	return 0;
 }

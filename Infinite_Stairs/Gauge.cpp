@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Gauge.h"
+#include "BmpMgr.h"
 
-
-CGauge::CGauge() :count(0)
+CGauge::CGauge()
 {
 }
 
@@ -25,6 +25,7 @@ int CGauge::Update()
 		return OBJ_DEAD;
 	if (m_dwTime + m_dwDelayTime < GetTickCount()) {
 		++count;
+		m_dwTime = GetTickCount();
 	}
 	Update_Rect();
 	return OBJ_NOEVENT;
@@ -40,6 +41,16 @@ void CGauge::Late_Update()
 
 void CGauge::Render(HDC _DC)
 {
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"GaugeBackGround");
+	GdiTransparentBlt(_DC
+		, m_tRect.left, m_tRect.top
+		, m_tInfo.iCX, m_tInfo.iCY
+		, hMemDC
+		, 0, 0
+		, 786, 124	
+		, RGB(0, 255, 0));
+	hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Gauge");
+	BitBlt(_DC, m_tRect.left + 11, m_tRect.top + 13, m_tInfo.iCX - m_tInfo.iCX*(count * 0.01) - 20, m_tInfo.iCY - 25, hMemDC, 0, 0, SRCCOPY);
 }
 
 void CGauge::Release()

@@ -29,6 +29,14 @@ void CPlayer::Initialize()
 	m_tInfo.iCY = 259;
 	
 	m_eCurState = IDLE;
+
+	m_tFrame.iStartX = 0;
+	m_tFrame.iEndX = 1;
+	m_tFrame.iStateY = IDLE;
+	m_tFrame.dwDelayTime = 200;
+	m_tFrame.dwTime = GetTickCount();
+	Update_Rect();
+
 }
 
 int CPlayer::Update()

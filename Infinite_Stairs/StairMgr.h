@@ -16,7 +16,6 @@ public:
 
 public:
 	CObj* Get_Stair(int _iIdx) { return m_dequeStair[_iIdx]; }
-
 public:
 	static CStairMgr* Get_Instance()
 	{

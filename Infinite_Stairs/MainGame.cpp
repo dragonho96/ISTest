@@ -27,7 +27,8 @@ void CMainGame::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/Background_Sky.bmp", L"Background_Sky");
 
 	m_hDC = GetDC(g_hWnd);
-	CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::STAGE);
+	CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::MENU);
+	//stage에 있는 obj를 menu로 옮기고 stage일때만 움직이게 하면 될거같은데?
 }
 
 void CMainGame::Update()
