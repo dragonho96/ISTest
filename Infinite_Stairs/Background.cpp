@@ -36,8 +36,8 @@ void CBackground::Late_Update()
 
 void CBackground::Render(HDC _DC)
 {
-	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
-	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX() / 10;
+	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY() / 10;
 
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
