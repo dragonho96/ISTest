@@ -8,7 +8,7 @@ CStairMgr* CStairMgr::m_pInstance = nullptr;
 
 CStairMgr::CStairMgr()
 	: m_bLeft(true), m_bPrevLeft(true), m_iRepeat(0), 
-	m_iProbability(2), m_iCoinProbability(2)
+	m_iProbability(1), m_iCoinProbability(2)
 {
 }
 

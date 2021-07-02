@@ -143,6 +143,10 @@ void CPlayer::Update_Rect()
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
 	m_tRect.bottom = (LONG)m_tInfo.fY;
 
+	m_tRectBottom.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
+	m_tRectBottom.top = (LONG)(m_tInfo.fY - 10.f);
+	m_tRectBottom.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));
+	m_tRectBottom.bottom = (LONG)m_tInfo.fY;
 	/*m_tRect.left = (LONG)(m_tInfo.fX - (m_tInfo.iCX >> 1));
 	m_tRect.top = (LONG)(m_tInfo.fY - (m_tInfo.iCY >> 1));
 	m_tRect.right = (LONG)(m_tInfo.fX + (m_tInfo.iCX >> 1));

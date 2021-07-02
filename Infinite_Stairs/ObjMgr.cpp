@@ -2,6 +2,7 @@
 #include "ObjMgr.h"
 #include "Obj.h"
 #include "Player.h"
+#include "CollisionMgr.h"
 
 CObjMgr* CObjMgr::m_pInstance = nullptr;
 
@@ -32,6 +33,8 @@ void CObjMgr::Update()
 				++iter;
 		}
 	}
+
+	CCollisionMgr::Collision_Coin(m_listObj[OBJID::PLAYER], m_listObj[OBJID::COIN]);
 }
 
 void CObjMgr::Late_Update()

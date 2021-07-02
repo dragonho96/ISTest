@@ -2,7 +2,7 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
 
-#define WINCX 450
+#define WINCX 500
 #define WINCY 750
 
 #define SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
@@ -19,7 +19,7 @@
 #define STAIR_INITPOS_Y 600
 
 #define BACKGROUND_STREET_CX 4000
-#define BACKGROUND_STREET_CY 650
+#define BACKGROUND_STREET_CY 775
 #define BACKGROUND_SKY_CX 4000
 #define BACKGROUND_SKY_CY 1850
 

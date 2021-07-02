@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CollisionMgr.h"
 #include "Obj.h"
-
+#include "Player.h"
 
 CCollisionMgr::CCollisionMgr()
 {
@@ -12,8 +12,7 @@ CCollisionMgr::~CCollisionMgr()
 {
 }
 
-// 이 함수 수정한 후 쓰자
-void CCollisionMgr::Collision_Rect(list<CObj*>& _Dst, list<CObj*>& _Src)
+void CCollisionMgr::Collision_Coin(list<CObj*>& _Dst, list<CObj*>& _Src)
 {
 	RECT rc = {};
 
@@ -21,10 +20,10 @@ void CCollisionMgr::Collision_Rect(list<CObj*>& _Dst, list<CObj*>& _Src)
 	{
 		for (auto& Src : _Src)
 		{
-			if (IntersectRect(&rc, &Dst->Get_Rect(), &Src->Get_Rect()))
+			if (IntersectRect(&rc, &static_cast<CPlayer*>(Dst)->Get_RectBottom(), &Src->Get_Rect()))
 			{
-				//Dst->Set_Dead();
-				//Src->Set_Dead();
+				Src->Set_Dead();
+				static_cast<CPlayer*>(Dst)->Set_Coin(1);
 			}
 		}
 	}
