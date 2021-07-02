@@ -22,6 +22,11 @@ public:
 
 public:
 	int Get_StairCnt() { return m_iStairCnt; }
+	int Get_Coin() { return m_iCoin; }
+	RECT Get_RectBottom() { return m_tRectBottom; }
+
+public:
+	void Set_Coin(int _iCoin) { m_iCoin += _iCoin; }
 
 public:
 	virtual void Initialize() override;
@@ -35,12 +40,16 @@ private:
 	STATE		m_ePreState;
 	STATE		m_eCurState;
 
+	RECT		m_tRectBottom;
+
 	bool		m_bStretch;
 	bool		m_bRightLeg;
 
 	int			m_iStairCnt;
 	float		m_fStairCX;
 	float		m_fStairCY;
+
+	int			m_iCoin;
 };
 
 #endif
