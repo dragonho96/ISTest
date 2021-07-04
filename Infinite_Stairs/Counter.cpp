@@ -38,7 +38,7 @@ void CCounter::Render(HDC _DC)
 	HDC hMemDC;
 	int idx = 0;
 	int stair_cnt = 0;
-	//int coin_cnt = 0;
+	int coin_cnt = 0;
 
 
 	if (!CObjMgr::Get_Instance()->PlayerEmpty())
@@ -94,8 +94,9 @@ void CCounter::Render(HDC _DC)
 
 
 	idx = 0;
-	//Ccnt = num_of_digit(coin_cnt);
-	/*if (!lstrcmp(m_pFrameKey, L"CoinCnt"))
+	coin_cnt = CPlayer::Get_Coin();
+	Ccnt = num_of_digit(coin_cnt);
+	if (!lstrcmp(m_pFrameKey, L"CoinCnt"))
 	{
 		 hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"CoinCnt");
 
@@ -110,7 +111,7 @@ void CCounter::Render(HDC _DC)
 			coin_cnt /= 10;
 			idx++;
 		}
-	}*/
+	}
 }
 
 void CCounter::Release()

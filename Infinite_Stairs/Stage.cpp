@@ -8,7 +8,7 @@
 #include "BmpMgr.h"
 #include "BackgroundMgr.h"
 #include "ScrollMgr.h"
-
+#include "Text.h"
 CStage::CStage()
 {
 }
@@ -26,6 +26,10 @@ void CStage::Initialize()
 
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CCounter>::Create(225, 150, 55, 80, L"StairCnt"), OBJID::STAGEUI);
 	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CGauge>::Create(225, 50, 380, 50, L"Gauge"), OBJID::GAUGE);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CText>::Create(450, 270, 100, 50, L"CoinPlate"), OBJID::COINUI);
+	CObjMgr::Get_Instance()->Add_Object(CAbstractFactory<CCounter>::Create(470, 270, 11, 21, L"CoinCnt"), OBJID::COINUI);
+
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/GaryNum.bmp", L"StairCnt");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/YellowNum.bmp", L"CoinCnt");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Sprites/GaugeBackGround.bmp", L"GaugeBackGround");

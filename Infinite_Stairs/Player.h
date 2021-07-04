@@ -22,7 +22,7 @@ public:
 
 public:
 	int Get_StairCnt() { return m_iStairCnt; }
-	int Get_Coin() { return m_iCoin; }
+	static int Get_Coin() { return m_iCoin; }
 	RECT Get_RectBottom() { return m_tRectBottom; }
 
 public:
@@ -50,7 +50,7 @@ private:
 	float		m_fStairCX;
 	float		m_fStairCY;
 
-	int			m_iCoin;
+	static int			m_iCoin;
 };
 
 #endif
