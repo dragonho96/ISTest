@@ -77,6 +77,17 @@ void CText::Render(HDC _DC)
 			, 193, 62
 			, RGB(0, 0, 0));
 	}
+	if (!lstrcmp(m_pFrameKey, L"CoinPlate"))
+	{
+		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"CoinPlate");
+		GdiTransparentBlt(_DC
+			, m_tRect.left, m_tRect.top
+			, m_tInfo.iCX, m_tInfo.iCY
+			, hMemDC
+			, 0, 0
+			, 272, 90
+			, RGB(0, 255, 0));
+	}
 }
 
 void CText::Release()

@@ -7,6 +7,9 @@
 #include "BmpMgr.h"
 #include "Gauge.h"
 #include "SceneMgr.h"
+
+int CPlayer::m_iCoin = 0;
+
 CPlayer::CPlayer()
 	: m_bStretch(false), m_iStairCnt(0), m_fStairCX(0.f), m_fStairCY(0.f), m_ePreState(END), m_eCurState(END), m_dwDeadTime(GetTickCount()), m_bRightLeg(true)
 {
