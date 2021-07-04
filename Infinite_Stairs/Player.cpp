@@ -47,7 +47,9 @@ int CPlayer::Update()
 		if (m_dwDeadTime + 1000 < GetTickCount())
 		{
 			m_tInfo.fY += 15.f;
-			if (m_tInfo.fY > WINCY + 200) {
+			float y = CScrollMgr::Get_Instance()->Get_ScrollY();
+			if (m_tInfo.fY + y > WINCY + 300)
+			{
 				CObjMgr::Get_Instance()->Set_StairMax(m_iStairCnt);
 				CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::GAMEOVER);
 				return OBJ_DEAD;
@@ -276,9 +278,10 @@ void CPlayer::Check_Dead()
 		if (CStairMgr::Get_Instance()->Get_Stair(m_iStairCnt - 1)->Get_Info().fX != m_tInfo.fX)
 		{
 			--m_iStairCnt;
-			m_eCurState = DEAD;
 			m_bDead = true;
 			m_dwDeadTime = GetTickCount();
 		}
 	}
+	if (m_bDead)
+		m_eCurState = DEAD;
 }
